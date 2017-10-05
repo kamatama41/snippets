@@ -1,14 +1,14 @@
 #!/bin/bash
 
-set -eu
-
-RUNTIME=${1}
+CMD=${1:-bash}
 shift
 ARGS="${@}"
-if [ "${RUNTIME}" == "jruby" ]; then
-  cmd="~/.rbenv/versions/jruby-9.1.13.0/bin/jruby /test.rb ${ARGS}"
+if [ "${CMD}" == "jruby" ]; then
+  run="~/.rbenv/versions/jruby-9.1.13.0/bin/jruby /test.rb ${ARGS}"
+elif [ "${CMD}" == "ruby" ]; then
+  run="~/.rbenv/versions/2.4.2/bin/ruby /test.rb ${ARGS}"
 else
-  cmd="~/.rbenv/versions/2.4.2/bin/ruby /test.rb ${ARGS}"
+  run="${CMD} ${ARGS}"
 fi
-echo "Run: ${cmd}"
-exec /bin/bash -lc "${cmd}"
+echo "Run: ${run}"
+exec /bin/bash -lc "${run}"

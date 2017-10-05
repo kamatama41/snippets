@@ -2,10 +2,10 @@ require 'net/http'
 require 'optparse'
 
 opts = ARGV.getopts('', 'set-cert')
+puts opts
 
 url = 'https://www.google.co.jp'
 puts "Start to access #{url}"
-puts opts
 uri = URI.parse(url)
 http = Net::HTTP.new(uri.hostname, uri.port)
 http.use_ssl = true
