@@ -21,5 +21,8 @@ RUN apt-get install -y openjdk-8-jdk \
 COPY ./Equifax_Secure_Certificate_Authority.pem /Equifax_Secure_Certificate_Authority.pem
 COPY ./test.rb /test.rb
 COPY ./entrypoint.sh /entrypoint.sh
+COPY ./Test.java /Test.java
+
+RUN javac Test.java
 
 ENTRYPOINT ["/entrypoint.sh"]
